@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './Tickets.css';
 
 const Tickets = (props) => {
-    console.log("tickets",props);
-    const {id, type, photo} = props.ticket;
+  
+  const {id, type, photo} = props.ticket;
   return (
     <div className=" col-10 col-sm-6 col-md-3 p-3 mt-5">
       <div className="card" >

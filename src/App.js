@@ -9,7 +9,6 @@ import {
 import TicketCounter from './components/TicketCounter/TicketCounter';
 import Header from './components/Header/Header';
 import LogIn from './components/LogIn/LogIn';
-import Tickets from './components/Tickets/Tickets';
 import Destination from './components/Destination/Destination';
 import NotFound from './components/NotFound/NotFound';
 import { createContext, useState } from 'react';
@@ -18,7 +17,9 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 export const UserContext = createContext();
 
 function App() {
+
   const [loggedInUser, setLoggedInUser] = useState({});
+
   return (
     <UserContext.Provider value ={[loggedInUser, setLoggedInUser]}>
       <Router>
@@ -40,7 +41,6 @@ function App() {
             <NotFound></NotFound>
           </Route>
         </Switch>
-
       </Router>
     </UserContext.Provider>
   );

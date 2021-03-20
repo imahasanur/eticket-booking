@@ -34,21 +34,22 @@ const LogIn = () => {
   let {from} = location.state || {from: {pathname: "/"}};
 
   const handleSubmit= (e) =>{
+
     // create user with email and password
     if(newUser && user.email && user.password){
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const currentUser = userCredential.user;
         setSignedUp(!signedUp);
         setSignInError("");
         setNewUser(!newUser);
-        console.log("created user",user);
+        updateProfile(user.name);       
+        console.log("created user",currentUser);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setSignInError(errorMessage);
-        console.log("error",error)
       });
     }
 
@@ -57,20 +58,19 @@ const LogIn = () => {
       setSignedUp(false);
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const currentUser = userCredential.user;
         const newUserr = {...user};
         newUserr.isSignedIn = true;
+        newUserr.name = currentUser.displayName;
         setLoggedInUser(newUserr);
         setUser(newUserr);
         setSignInError("");
-        console.log("After sing in", user);
         history.replace(from);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setSignInError(errorMessage);
-        console.log("After sing in error", error);
       });
     }
     
@@ -79,7 +79,6 @@ const LogIn = () => {
   
   const handleBlur= (e) =>{
     let isFormValid =true;
-
     if(e.target.name === "email"){
       let email = e.target.value ;
       let reg = /\S+@\S+\.\S+/;
@@ -110,24 +109,26 @@ const LogIn = () => {
       newUser[e.target.name] = e.target.value;
       setUser(newUser);
     }
-    console.log("user", user)
   }
+
   const provider = new firebase.auth.GoogleAuthProvider();
   const handleGoogleSingIn = () =>{
+
+    //sign in with google pop up
     firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
       const credential = result.credential;
       const token = credential.accessToken;
-      const user = result.user;
-      console.log("Google sing in ", user)
-      const {displayName, email} =user;
+      const currentUser = result.user;
+      const {displayName, email} =currentUser;
       let newUser = {...user};
       newUser.isSignedIn = true;
       newUser.name = displayName;
       newUser.email = email;
       setUser(newUser);
-      setLoggedInUser(user);
+      setLoggedInUser(newUser);
+      history.replace(from);
 
     }).catch((error) => {
       const errorCode = error.code;
@@ -136,6 +137,17 @@ const LogIn = () => {
       const credential = error.credential;
   });
 
+  }
+
+  // update  profile name
+  const updateProfile = (name)=>{
+    let user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: name,
+      photoURL:""})
+    .then(function() {})
+    .catch(function(error) {
+    });
   }
 
   return (
@@ -149,10 +161,10 @@ const LogIn = () => {
           {<p className="offset-2 col-8 col-sm-8 col-md-9">{user.email==="" && error}</p>}
         </div>
         <div className="mb-3 row">
-          <input type="password" name="password" onBlur={handleBlur} className="offset-2 form-control col-8 col-sm-8 col-md-4"  placeholder="Password" required />
+          <input type="password" name="password" onBlur={handleBlur} className="offset-2 form-control col-8 col-sm-8 col-md-4"  placeholder="Password minimum length 7 .." required />
         </div>
         {newUser && <div className="mb-3 row">
-          <input type="password" name="confirmPassword" onBlur={handleBlur}className="offset-2 form-control col-8 col-sm-8 col-md-4"  placeholder="Confirm password" required />
+          <input type="password" name="confirmPassword" onBlur={handleBlur}className="offset-2 form-control col-8 col-sm-8 col-md-4"  placeholder="Confirm password minimum length 7 .." required />
           {<p className="offset-2 col-8 col-sm-8 col-md-9">{user.password && error}</p>}
        </div>}
         {newUser && <div className="mb-3 row">
@@ -173,7 +185,6 @@ const LogIn = () => {
       <div className ="row mb-3 ml-4">
           <button onClick = {handleGoogleSingIn} className =" offset-2 col-8 col-sm-8 col-md-4 form-control">Sing In with Google</button>
       </div>
- 
   
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Destination.css';
 import fakeData from "../../fakeData/fakeData";
 import { useParams } from 'react-router';
+import GoogleMap from '../GoogelMap/GoogleMap';
 
 const Destination = () => {
 
@@ -16,15 +17,14 @@ const Destination = () => {
   useEffect(()=>{
     setTickets(fakeData);
     const bookedTicket = tickets.filter(tckt => {
-        console.log(tckt, "inside useEffect");
-        if(tckt.id === Number(ticketId)){
-            return tckt;
-        }
+      if(tckt.id === Number(ticketId)){
+        return tckt;
+      }
     });
     setTicket(bookedTicket);
     console.log("Actual ticket",ticket)
 
-  }, [ ticket] );
+  }, [tickets] );
 
   const handleBlur = (e) =>{
     if(e.target.value !== ""){
@@ -33,15 +33,14 @@ const Destination = () => {
       setDestination(newDestination);
     }
   }
+
   const handleSubmit = (e)=>{
       setIsSearched(!isSearched);
       e.preventDefault();
-
   }
 
-  console.log("ticket id", typeof ticketId);
   return (
-    <div className="row container-fluid">
+    <div className="row container-fluid ">
       <div className="destination-places col-10 col-md-4">
         <div className="p-5 destination-form">
           {!isSearched && <form onSubmit={handleSubmit}>
@@ -62,18 +61,26 @@ const Destination = () => {
             </div>
           }
           {isSearched &&
-            <div className="row">
-              <div className="col-md-5">
+            <div className="row container-fluid">
+              <div className="col-md-10 d-flex mb-2">
+                <img src={ticket[0].photo} className="transport-view mr-2" alt="" />
+                <p>{ticket[0].cost1}$</p>
               </div>
-
-
+              <div className="col-md-10 d-flex mb-2">
+                <img src={ticket[0].photo} className="transport-view mr-2" alt="" />
+                <p>{ticket[0].cost2}$</p>
+              </div>
+              <div className="col-md-10 d-flex ">
+                <img src={ticket[0].photo} className="transport-view mr-2" alt="" />
+                <p>{ticket[0].cost3}$</p>
+              </div>
             </div>
           }
         </div>
         
       </div> 
       <div className="destination-map col-10 col-md-6 m-3">
-        <h2>This is Map</h2>
+        <GoogleMap></GoogleMap>
       </div>  
     </div>
   );

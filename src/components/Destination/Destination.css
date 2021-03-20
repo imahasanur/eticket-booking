@@ -1,7 +1,17 @@
 .destination-form{
-    background:coral;
+    background:gray;
     width:70%;
     margin:20px 10px;
-    border: 2px solid chocolate;
+    border: 2px solid slategray;
+    box-shadow: 5px 5px 10px lightcoral;
     border-radius: 5px;
+}
+.transport-view{
+    margin-left:0;
+    display:block;
+    height:50px;
+    width:80px;
+}
+.transport-view + p{
+    color:white;
 }
