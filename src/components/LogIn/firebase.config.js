@@ -1,10 +1,10 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyA3Ke0IjJd-GbsaJPUf93r844srufdCMdQ",
-    authDomain: "ticket-booking-simple.firebaseapp.com",
-    projectId: "ticket-booking-simple",
-    storageBucket: "ticket-booking-simple.appspot.com",
-    messagingSenderId: "440953369085",
-    appId: "1:440953369085:web:4562a3e7dbc1039ce16994"
-  };
+  apiKey: "AIzaSyBRlZQd9aB0qB5lAGKVGHONIgsvD2-eigs",
+  authDomain: "ticket-booking-simple-4ee8a.firebaseapp.com",
+  projectId: "ticket-booking-simple-4ee8a",
+  storageBucket: "ticket-booking-simple-4ee8a.appspot.com",
+  messagingSenderId: "281027014722",
+  appId: "1:281027014722:web:1378da1baf019a6880bddb"
+};
 
   export default firebaseConfig;
