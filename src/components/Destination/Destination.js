@@ -70,7 +70,7 @@ const Destination = () => {
                 <img src={ticket[0].photo} className="transport-view mr-2" alt="" />
                 <p>{ticket[0].cost2}$</p>
               </div>
-              <div className="col-md-10 d-flex ">
+              <div className="col-md-12 d-flex ">
                 <img src={ticket[0].photo} className="transport-view mr-2" alt="" />
                 <p>{ticket[0].cost3}$</p>
               </div>
