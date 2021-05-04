@@ -17,5 +17,5 @@ Html5, Css3, bootstrap, javascript, React JS, React Router DOM, Firebase(hosting
 
 ## Live site
 
-Live Site [ticket-booking-simple](https://ticket-booking-simple-4ee8a.web.app/ticketCounter) to view it in the browser.
+Live Site [ticket-booking-app](https://ticket-booking-simple-4ee8a.web.app/ticketCounter) to view it in the browser.
 
