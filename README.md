@@ -19,5 +19,7 @@ Html5, Css3, bootstrap, javascript, React JS, React Router DOM, Firebase(hosting
 
 Live Site [ticket-booking-app](https://ticket-booking-simple-4ee8a.web.app/ticketCounter) to view it in the browser.
 
-## My Portfolio 
-PortFolio site[ahasanur-rahman.com](https://ahasanur-rahman.web.app/)
+## Connect with me
+portfolio site[ahasanur-rahman.com](https://ahasanur-rahman.web.app/)
+
+linkedin profile[linkedin.com/ahasanur-rahman](https://www.linkedin.com/in/ahasanur-rahman-a10925202/)
