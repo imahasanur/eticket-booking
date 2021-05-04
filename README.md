@@ -1,7 +1,7 @@
-#Ticket booking simple react app with firebase authentication
+## Ticket booking react app with firebase authentication
 
-This project is about ticket booking using firebase authentication system.
-Used dynamic and protected routing for selecting destination at last a google map. 
+This project is about ticket booking including firebase authentication system.
+
 
 ## Used Technology
 
